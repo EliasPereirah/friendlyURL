@@ -1,10 +1,10 @@
 <?php
-function friendlyURL(string $title, $mb = false)
+public function friendlyURL(string $title, $mb = false)
     {
         if ($mb) {
-            $text = mb_strtolower($title);
+            $title = mb_strtolower($title);
         } else {
-            $text = strtolower($title);
+            $title = strtolower($title);
         }
         $toReplace = [
             '°' => '0',
@@ -193,5 +193,6 @@ function friendlyURL(string $title, $mb = false)
         $url = str_replace(array_keys($toReplace), array_values($toReplace), trim($title));
         $url = preg_replace("/\s+/","-", $url);
         $url = preg_replace("/[^a-z0-9\-]/", "", $url);
+        $url = preg_replace("/-+/","-", $url);
         return trim($url, '-');
     }
