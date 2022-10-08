@@ -194,7 +194,6 @@ function friendlyURL(string $title, $mb = false)
         ];
 
         $url = str_replace(array_keys($toReplace), array_values($toReplace), trim($title));
-        $url = strtolower($url);
         $url = preg_replace("/\s+/","-", $url);
         $url = preg_replace("/[^a-z0-9\-]/", "", $url);
         return trim($url, '-');
